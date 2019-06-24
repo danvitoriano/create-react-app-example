@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Alert } from './Alert';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { name: "danilo" };
+    this.updateDiv = this.updateDiv.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  updateDiv() {
+    this.setState({ name: "lurdes" })
+  }
+
+  handleChange(event) {
+    this.setState({name: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.name);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <>
+        <Alert name={this.state.name} />
+        <div>{this.state.name}</div>
+        <button onClick={this.updateDiv}>update div</button>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name: <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </>
+    )
+  }
+
 }
 
 export default App;

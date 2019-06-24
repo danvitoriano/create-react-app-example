@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from './Alert';
-
+import './App.css';
 class App extends React.Component {
 
   constructor(props) {
@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <>
         <Alert name={this.state.name} />
-        <div>{this.state.name}</div>
+        <div className="App-header">{this.state.name}</div>
         <button onClick={this.updateDiv}>update div</button>
         <form onSubmit={this.handleSubmit}>
           <label>

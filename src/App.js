@@ -24,6 +24,12 @@ class App extends React.Component {
     event.preventDefault();
   }
 
+  async componentDidMount(){
+    await fetch("https://5d04064fd1471e00149bb174.mockapi.io/api/v1/blogs/1")
+      .then(response => response.json())
+      .then(data => this.setState({name: data.title}))
+  }
+
   render() {
     return (
       <>
